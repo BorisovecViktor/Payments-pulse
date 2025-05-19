@@ -15,6 +15,17 @@ const theme = createTheme({
   },
   breakpoints: breakpointsTheme.breakpoints,
   typography,
+  components: {
+    MuiTableHead: {
+      styleOverrides: {
+        root: {
+          position: 'sticky',
+          top: 0,
+          zIndex: 1,
+        },
+      },
+    },
+  },
 })
 
 export { theme }

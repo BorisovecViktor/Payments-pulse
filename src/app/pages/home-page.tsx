@@ -1,18 +1,13 @@
-import { Grid, Typography } from '@mui/material'
-import { MerchantsList } from 'features'
+import { Grid } from '@mui/material'
+import { MerchantsList, MerchantsContainer } from 'features'
 
-export const HomePage = () => {
-  return (
-    <Grid container spacing={2}>
-      <Grid size={2}>
-        <MerchantsList />
-      </Grid>
-      <Grid size={10}>
-        <Typography>size=10</Typography>
-      </Grid>
-      <Grid size={12}>
-        <Typography>size=12</Typography>
-      </Grid>
+export const HomePage = () => (
+  <Grid container rowSpacing={2} columnSpacing={5}>
+    <Grid size={2}>
+      <MerchantsList />
     </Grid>
-  )
-}
+    <Grid size={10}>
+      <MerchantsContainer />
+    </Grid>
+  </Grid>
+)

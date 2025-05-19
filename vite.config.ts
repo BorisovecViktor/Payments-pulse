@@ -14,6 +14,8 @@ export default defineConfig({
       components: '/src/components',
       features: '/src/features',
       lib: '/src/lib',
+      mocks: '/src/mocks',
+      utils: '/src/utils',
     },
   },
   plugins: [react()],

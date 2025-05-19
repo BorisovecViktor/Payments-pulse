@@ -12,7 +12,6 @@ export const useMerchants = (): UseMerchants => {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     retry: 1,
-    staleTime: 1000 * 60 * 60,
   })
 
   return useMemo(() => {

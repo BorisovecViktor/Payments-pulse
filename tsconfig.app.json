@@ -21,14 +21,16 @@
       "api/*": ["api/*"],
       "components/*": ["components/*"],
       "features/*": ["features/*"],
-      "lib/*": ["lib/*"]
+      "lib/*": ["lib/*"],
+      "mocks/*": ["mocks/*"],
+      "utils/*": ["utils/*"]
     },
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
+    "erasableSyntaxOnly": false,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
