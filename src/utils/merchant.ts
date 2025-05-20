@@ -79,4 +79,4 @@ export const getRefetchInterval = (refreshInterval: string) =>
   Number.isInteger(Number(refreshInterval)) ? Number(refreshInterval) : false
 
 export const getVisibleTableRows = (ref: RefObject<HTMLDivElement | null>) =>
-  ref.current ? Math.floor(ref.current.clientHeight / TABLE_ROW_HEIGHT) : 0
+  ref.current ? Math.floor(ref.current.clientHeight / TABLE_ROW_HEIGHT + 1) : 0
