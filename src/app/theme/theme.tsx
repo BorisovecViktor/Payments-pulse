@@ -25,6 +25,23 @@ const theme = createTheme({
         },
       },
     },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          padding: '6px 10px',
+        },
+      },
+    },
+    MuiListItemText: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+        },
+        primary: {
+          fontWeight: 'bold',
+        },
+      },
+    },
   },
 })
 

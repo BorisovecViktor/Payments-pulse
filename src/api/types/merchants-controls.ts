@@ -1,6 +1,11 @@
-export type UseMerchant = {
-  merchant: string
-  setMerchant: (value: string) => void
+export type Account = {
+  id: string
+  name: string
+}
+
+export type UseAccount = {
+  account: string
+  setAccount: (value: string) => void
   isError: boolean
 }
 

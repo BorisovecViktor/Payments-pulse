@@ -12,11 +12,11 @@ type Props = {
   transactionsFilter: string
 }
 
-export const useMerchantTransactions = ({
+export const useTransactions = ({
   merchantId,
   transactionsFilter,
 }: Props): UseMerchantTransactions => {
-  const { data, isSuccess, isError } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: [QUERY_KEY.merchantTransactions, { merchantId }],
     queryFn: () => merchantsApiService.getMerchantTransactions(merchantId),
     select: (data) => data.data,
@@ -33,8 +33,8 @@ export const useMerchantTransactions = ({
               (item) => item.status === MerchantTransactionStatus.FAILED,
             ) ?? []
           : data ?? [],
-      isSuccess,
-      isError,
+      isLoading,
+      error,
     }
-  }, [transactionsFilter, data, isSuccess, isError])
+  }, [transactionsFilter, data, isLoading, error])
 }

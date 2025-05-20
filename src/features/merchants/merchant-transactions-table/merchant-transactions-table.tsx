@@ -10,11 +10,12 @@ import {
   TableRow,
   Typography,
 } from '@mui/material'
-import { TableHeadCell } from 'components'
+import { Skeleton, TableHeadCell, toastError } from 'components'
 import { MerchantTransactionsTableItem } from './merchant-transactions-table-item'
 import { MerchantTransactionStatus, type MerchantTransaction } from 'api/types'
-import { useMerchantTransactions } from 'api/hooks'
+import { useTransactions } from 'api/hooks'
 import { format } from 'date-fns'
+import { getVisibleTableRows } from 'utils/merchant'
 
 type Props = {
   merchantId: string
@@ -25,8 +26,12 @@ export const MerchantTransactionsTable = ({
   merchantId,
   transactionsFilter,
 }: Props) => {
-  const { data } = useMerchantTransactions({ merchantId, transactionsFilter })
+  const { data, isLoading, error } = useTransactions({
+    merchantId,
+    transactionsFilter,
+  })
   const tableContainerRef = useRef<HTMLDivElement>(null)
+  const visibleTableRows = getVisibleTableRows(tableContainerRef)
 
   const columns = useMemo<Array<ColumnDef<MerchantTransaction>>>(
     () => [
@@ -85,37 +90,45 @@ export const MerchantTransactionsTable = ({
 
   const { rows } = table.getRowModel()
 
+  if (error) {
+    toastError(error.message)
+  }
+
   return (
     <TableContainer
       component={Paper}
       ref={tableContainerRef}
       sx={{
-        height: 'calc(100vh - 687px)',
+        height: 'calc(100vh - 717px)',
         overflow: 'hidden',
         overflowY: 'scroll',
       }}
     >
-      <Table size="small" aria-label="transactions table">
-        <TableHead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} sx={{ display: 'flex' }}>
-              {headerGroup.headers.map((header) => (
-                <TableHeadCell key={header.id} header={header} />
-              ))}
-            </TableRow>
-          ))}
-        </TableHead>
-        <TableBody
-          sx={{
-            display: 'grid',
-            position: 'relative',
-          }}
-        >
-          {rows.map((row) => (
-            <MerchantTransactionsTableItem key={row.id} row={row} />
-          ))}
-        </TableBody>
-      </Table>
+      {isLoading ? (
+        <Skeleton rows={visibleTableRows} />
+      ) : (
+        <Table size="small" aria-label="transactions table">
+          <TableHead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id} sx={{ display: 'flex' }}>
+                {headerGroup.headers.map((header) => (
+                  <TableHeadCell key={header.id} header={header} />
+                ))}
+              </TableRow>
+            ))}
+          </TableHead>
+          <TableBody
+            sx={{
+              display: 'grid',
+              position: 'relative',
+            }}
+          >
+            {rows.map((row) => (
+              <MerchantTransactionsTableItem key={row.id} row={row} />
+            ))}
+          </TableBody>
+        </Table>
+      )}
     </TableContainer>
   )
 }

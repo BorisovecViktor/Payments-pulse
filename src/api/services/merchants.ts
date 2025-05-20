@@ -1,16 +1,13 @@
 import { $api } from 'api/http'
-import type {
-  Merchant,
-  MerchantStatistic,
-  MerchantTransaction,
-} from 'api/types'
+import type { Account, Merchant, MerchantTransaction } from 'api/types'
 
 class MerchantsApiService {
-  getMerchants() {
-    return $api.get<Array<Merchant>>('/merchants')
+  getAccounts() {
+    return $api.get<Array<Account>>('/accounts')
   }
-  getMerchantStatistic(id: string) {
-    return $api.get<Array<MerchantStatistic>>(`/stats/${id}`)
+  
+  getMerchants(id: string) {
+    return $api.get<Array<Merchant>>(`/stats/${id}`)
   }
 
   getMerchantTransactions(id: string) {

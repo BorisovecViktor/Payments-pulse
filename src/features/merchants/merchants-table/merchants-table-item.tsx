@@ -3,16 +3,16 @@ import { blue, green, grey } from '@mui/material/colors'
 import { flexRender, type Row } from '@tanstack/react-table'
 import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual'
 import { useMerchant } from 'api/hooks'
-import type { MerchantStatistic } from 'api/types'
+import type { Merchant } from 'api/types'
 
 type Props = {
-  row: Row<MerchantStatistic>
+  row: Row<Merchant>
   virtualRow: VirtualItem
   rowVirtualizer: Virtualizer<HTMLDivElement, Element>
   isFetching: boolean
 }
 
-export const MerchantStatisticTableItem = ({
+export const MerchantsTableItem = ({
   row,
   virtualRow,
   rowVirtualizer,
@@ -25,7 +25,13 @@ export const MerchantStatisticTableItem = ({
     <TableRow
       data-index={virtualRow.index}
       ref={(node) => rowVirtualizer.measureElement(node)}
-      onClick={() => setMerchant(row.original.id)}
+      onClick={() => {
+        if (merchant === row.original.id) {
+          setMerchant(null)
+        } else {
+          setMerchant(row.original.id)
+        }
+      }}
       sx={{
         display: 'flex',
         position: 'absolute',

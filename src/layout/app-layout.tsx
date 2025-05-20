@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 
 export const AppLayout = () => {
   return (
-    <Stack spacing={3}>
+    <Stack spacing={3} sx={{ alignItems: 'center' }}>
       <header>
         <Typography variant="h1" sx={{ textAlign: 'center' }}>
           Payments Pulse

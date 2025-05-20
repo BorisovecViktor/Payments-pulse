@@ -1,19 +1,21 @@
 import { Stack, useMediaQuery, useTheme } from '@mui/material'
-import { merchants, refreshIntervals, transactionFilters } from 'mocks/data'
+import { accounts, refreshIntervals, transactionFilters } from 'mocks/data'
 import {
+  useAccounts,
   useMerchant,
   useRefreshInterval,
   useTransactionsFilter,
 } from 'api/hooks'
 import { RadioGroup, Select } from 'components'
-import { MerchantStatisticTable } from './merchant-statistic-table'
+import { MerchantsTable } from './merchants-table'
 import { MerchantTransactionsTable } from './merchant-transactions-table'
 
 export const MerchantsContainer = () => {
   // these hooks allow store data in a local storage (saves after page reload) and use it in any component without drilling
-  const { merchant, setMerchant } = useMerchant()
+  const { account, setAccount } = useAccounts()
   const { refreshInterval, setRefreshInterval } = useRefreshInterval()
   const { transactionsFilter, setTransactionsFilter } = useTransactionsFilter()
+  const { merchant } = useMerchant()
   const theme = useTheme()
   const mdUpMatch = useMediaQuery(theme.breakpoints.up('md'))
 
@@ -28,10 +30,10 @@ export const MerchantsContainer = () => {
         }}
       >
         <Select
-          value={merchant}
-          onChange={setMerchant}
-          options={merchants}
-          label="Merchants"
+          value={account}
+          onChange={setAccount}
+          options={accounts}
+          label="Accounts"
         />
         <RadioGroup
           value={refreshInterval}
@@ -46,14 +48,13 @@ export const MerchantsContainer = () => {
           label="Transactions filters"
         />
       </Stack>
-      <MerchantStatisticTable
-        merchantId={merchant}
-        refreshInterval={refreshInterval}
-      />
-      <MerchantTransactionsTable
-        merchantId={merchant}
-        transactionsFilter={transactionsFilter}
-      />
+      <MerchantsTable accountId={account} refreshInterval={refreshInterval} />
+      {merchant && (
+        <MerchantTransactionsTable
+          merchantId={merchant}
+          transactionsFilter={transactionsFilter}
+        />
+      )}
     </Stack>
   )
 }

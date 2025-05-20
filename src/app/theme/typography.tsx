@@ -21,6 +21,7 @@ const h1 = {
 } as const
 
 const h2 = {
+  fontWeight: 700,
   fontSize: '1.375rem',
   lineHeight: '28px',
   [breakpointsTheme.breakpoints.up('sm')]: {
@@ -37,6 +38,24 @@ const h2 = {
   },
 } as const
 
+const h3 = {
+  fontWeight: 700,
+  fontSize: '1.125rem',
+  lineHeight: '24px',
+  [breakpointsTheme.breakpoints.up('sm')]: {
+    fontSize: '1.125rem',
+    lineHeight: '24px',
+  },
+  [breakpointsTheme.breakpoints.up('lg')]: {
+    fontSize: '1.375rem',
+    lineHeight: '28px',
+  },
+  [breakpointsTheme.breakpoints.up('xl')]: {
+    fontSize: '1.375rem',
+    lineHeight: '28px',
+  },
+} as const
+
 const body1 = {
   fontSize: 14,
 } as const
@@ -49,6 +68,7 @@ export const typography = {
   fontFamily: fontFamilyRoboto,
   h1,
   h2,
+  h3,
   body1,
   body2,
 } as const

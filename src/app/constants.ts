@@ -1,8 +1,11 @@
 export const QUERY_KEY = {
-  merchants: 'merchants',
+  account: 'account',
   merchant: 'merchant',
-  merchantStatistic: 'merchantStatistic',
+  merchants: 'merchants',
   merchantTransactions: 'merchantTransactions',
   transactionsFilter: 'transactionsFilter',
   refreshInterval: 'refreshInterval',
 }
+
+export const MAX_FAILS = 90
+export const TABLE_ROW_HEIGHT = 34

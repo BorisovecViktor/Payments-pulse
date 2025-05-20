@@ -16,7 +16,7 @@ type Props = {
 }
 
 export const RadioGroup = ({ value, onChange, options, label }: Props) => (
-  <FormControl sx={{ ml: 2 }}>
+  <FormControl>
     <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
       {label && <Typography>{label}</Typography>}
       <MuiRadioGroup value={value} onChange={onChange}>

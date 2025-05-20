@@ -1,26 +1,21 @@
 export type Merchant = {
   id: string
   name: string
-}
-
-export type UseMerchants = {
-  data: Array<Merchant>
-  isSuccess: boolean
-  isError: boolean
-}
-
-export type MerchantStatistic = {
-  id: string
-  name: string
   transactions: number
   fail: number
   score: number
 }
 
-export type UseMerchantStatistic = {
-  data: Array<MerchantStatistic>
-  isSuccess: boolean
+export type UseMerchants = {
+  data: Array<Merchant>
   isFetching: boolean
+  isLoading: boolean
+  error: Error | null
+}
+
+export type UseMerchant = {
+  merchant: string | null
+  setMerchant: (value: string | null) => void
   isError: boolean
 }
 
@@ -39,6 +34,6 @@ export type MerchantTransaction = {
 
 export type UseMerchantTransactions = {
   data: Array<MerchantTransaction>
-  isSuccess: boolean
-  isError: boolean
+  isLoading: boolean
+  error: Error | null
 }
