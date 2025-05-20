@@ -118,7 +118,6 @@ export const MerchantsTable = ({ accountId, refreshInterval }: Props) => {
   if (error) {
     toastError(error.message)
   }
-console.log(visibleTableRows);
 
   return (
     <TableContainer
