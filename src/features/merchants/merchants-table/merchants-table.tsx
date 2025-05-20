@@ -112,7 +112,7 @@ export const MerchantsTable = ({ accountId, refreshInterval }: Props) => {
     count: rows.length,
     getScrollElement: () => tableContainerRef.current,
     estimateSize: () => TABLE_ROW_HEIGHT,
-    overscan: 5,
+    overscan: 70,
   })
 
   if (error) {

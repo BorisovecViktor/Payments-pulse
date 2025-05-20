@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { TableCell, TableRow } from '@mui/material'
 import { flexRender, type Row } from '@tanstack/react-table'
 import type { MerchantTransaction } from 'api/types'
@@ -6,7 +7,7 @@ type Props = {
   row: Row<MerchantTransaction>
 }
 
-export const MerchantTransactionsTableItem = ({ row }: Props) => (
+export const MerchantTransactionsTableItem = memo(({ row }: Props) => (
   <TableRow sx={{ display: 'flex' }}>
     {row.getVisibleCells().map((cell) => (
       <TableCell
@@ -23,4 +24,4 @@ export const MerchantTransactionsTableItem = ({ row }: Props) => (
       </TableCell>
     ))}
   </TableRow>
-)
+))
